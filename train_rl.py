@@ -14,7 +14,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--pretrained_model', type=str, default='facebook/blenderbot-400M-distill')
     parser.add_argument('--sim_pretrained_model', type=str, default='facebook/blenderbot-400M-distill')
-    parser.add_argument('--max_len', type=int, default=128)
+    parser.add_argument('--max_len', type=int, default=64)
     parser.add_argument('--dataset_split', type=str, default='train')
     parser.add_argument('--keywords_file', type=str, default='keywords.json')
     parser.add_argument('--num_batch', type=int, default=500)
