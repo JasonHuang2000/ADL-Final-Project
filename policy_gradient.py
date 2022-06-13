@@ -44,6 +44,9 @@ class PolicyGradientAgent():
 
         return loss.item()
 
+    def save_model(self, path: str):
+        torch.save(self.network.state_dict(), path)
+
     def sample(self, state: str):
         inputs = {}
         inputs = self.tokenizer(
@@ -86,5 +89,5 @@ class PolicyGradientAgent():
         # log_prob = torch.mean(action_dist.log_prob(action_ids))
         # action = self.tokenizer.decode(action_ids, skip_special_tokens=True)
 
-        print(f"action: {action}\nlog_prob: {log_prob}")
+        # print(f"action: {action}\nlog_prob: {log_prob}")
         return action, log_prob

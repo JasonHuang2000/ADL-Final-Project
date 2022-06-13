@@ -23,6 +23,7 @@ def parse_args():
     parser.add_argument('--chat_log_file', type=str, default=None)
     parser.add_argument('--device', type=str, default='cuda')
     parser.add_argument('--seed', type=int, default=777)
+    parser.add_argument('--model_save_path', type=str, default='saved_model/checkpoint.pt')
 
     args = parser.parse_args()
 
@@ -105,6 +106,7 @@ def main(configs):
         rewards = np.concatenate(acc_rewards, axis=0)
         rewards = (rewards - np.mean(rewards)) / (np.std(rewards) + 1e-9)  # normalize the reward
         loss = agent.learn(torch.stack(log_probs), torch.from_numpy(rewards).to(configs.device))
+        agent.save_model(configs.model_save_path)
 
         pbar.set_postfix({'loss': loss})
 
